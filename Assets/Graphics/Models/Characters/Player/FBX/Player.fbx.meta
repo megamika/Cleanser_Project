@@ -21,6 +21,18 @@ ModelImporter:
   - first:
       74: -5480419611278045171
     second: rig|Run
+  - first:
+      74: 1044463550699481426
+    second: rig|Run (1)
+  - first:
+      74: 6394785727354027343
+    second: rig|Death
+  - first:
+      74: 3595146875639446255
+    second: rig|Roll
+  - first:
+      74: 2364521889487926758
+    second: rig|Dash
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -70,11 +82,14 @@ ModelImporter:
       that will be discarded.\n\t'DEF-foot.L' has scale animation that will be discarded.\n\t'DEF-thigh.R'
       has scale animation that will be discarded.\n\t'DEF-shin.R' has scale animation
       that will be discarded.\n\t'DEF-foot.R' has scale animation that will be discarded.\n\nClip
-      'rig|ComboTest' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'DEF-spine.004'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.R'
-      has scale animation that will be discarded.\n\t'DEF-forearm.R' has scale animation
-      that will be discarded.\n\t'DEF-hand.R' has scale animation that will be discarded.\n\t'DEF-upper_arm.L'
+      'rig|Dash' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'DEF-spine.001'
+      has scale animation that will be discarded.\n\t'DEF-spine.002' has scale animation
+      that will be discarded.\n\t'DEF-spine.003' has scale animation that will be
+      discarded.\n\t'DEF-spine.004' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\t'DEF-upper_arm.R' has scale animation
+      that will be discarded.\n\t'DEF-forearm.R' has scale animation that will be
+      discarded.\n\t'DEF-hand.R' has scale animation that will be discarded.\n\t'DEF-upper_arm.L'
       has scale animation that will be discarded.\n\t'DEF-forearm.L' has scale animation
       that will be discarded.\n\t'DEF-hand.L' has scale animation that will be discarded.\n\t'DEF-thigh.L'
       has scale animation that will be discarded.\n\t'DEF-shin.L' has scale animation
@@ -132,17 +147,31 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.23200001
+        functionName: AttackDamage
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33714408
+        functionName: AttackTransitionReady
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -161,17 +190,31 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.22933334
+        functionName: AttackDamage
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.39041582
+        functionName: AttackTransitionReady
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -190,17 +233,24 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5146667
+        functionName: AttackDamage
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 2
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -248,12 +298,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -283,6 +333,35 @@ ModelImporter:
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: rig|Dash
+      takeName: rig|Dash
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000

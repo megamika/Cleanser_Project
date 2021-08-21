@@ -11,5 +11,11 @@ namespace DefinedEvents
         {
             public Vector3 value;
         }
+
+        [IncludeInSettings(true)]
+        public class Attack: IDefinedEvent { }
+
+        [IncludeInSettings(true)]
+        public class Dash : IDefinedEvent { }
     }
 }

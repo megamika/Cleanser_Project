@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456b7bb8d38258d40b5236db59e61ed1, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  team: {fileID: 11400000, guid: 7fe1314934dcfde4c8add8e753ac03e7, type: 2}
+  MaxHealth: 10
   movementSpeed: 1
+  movementSpeedWhenAttacking: 3
   rotationDamping: 50
