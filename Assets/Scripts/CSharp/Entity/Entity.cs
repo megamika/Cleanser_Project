@@ -41,6 +41,8 @@ public class Entity : MonoBehaviour
         RotationUpdate();
     }
 
+    #region general combat
+
     #region health
 
     float _health;
@@ -57,7 +59,7 @@ public class Entity : MonoBehaviour
             _health = value;
             if (_health <= 0f)
             {
-                anim?.SetTrigger("Death");
+                anim.SetTrigger("Death");
                 isDead = true;
                 _health = 0f;
             }
@@ -71,14 +73,30 @@ public class Entity : MonoBehaviour
 
     #endregion
 
-    #region damage
-
+    #region damage recieve
+    Vector3 knockbackDirection;
 
     public void RecieveDamage(float damage)
     {
         health -= damage;
         Debug.Log("Entity " + name + " revieved " + damage.ToString() + " damage.");
     }
+
+    #region knockback
+
+    public bool isInKnockback { get; set; }
+
+    public void RecieveKnockback(Vector3 source)
+    {
+        anim.Play("Knockback");
+        knockbackDirection = (source - transform.position).normalized;
+        knockbackDirection = new Vector3(knockbackDirection.x, 0, knockbackDirection.z);
+    }
+
+    #endregion
+
+
+
 
     public void DamageAnimationEvent(int i)
     {
@@ -102,7 +120,6 @@ public class Entity : MonoBehaviour
             _isAttacking = value;
             if (value)
             {
-                Debug.Log("Attack transition disabled");
                 readyToAttackTransition = false;
             }
         }
@@ -161,6 +178,10 @@ public class Entity : MonoBehaviour
     }
 
     #endregion
+
+    #endregion
+
+    #region general movement
 
     #region movers
 
@@ -244,7 +265,7 @@ public class Entity : MonoBehaviour
 
     #region dashing
 
-    public bool isDashing;
+    public bool isDashing { get; set; }
 
     public void Dash(string name)
     {
@@ -256,8 +277,6 @@ public class Entity : MonoBehaviour
 
     #endregion
 
-
-
     #region rotation
     Quaternion desiredRotation;
     Vector3 lookTarget;
@@ -268,7 +287,7 @@ public class Entity : MonoBehaviour
     }
 
     void RotationUpdate()
-    {
+    { 
         if (isMoving)
         {
             desiredRotation = Quaternion.LookRotation(movement.value, Vector3.up);
@@ -277,6 +296,10 @@ public class Entity : MonoBehaviour
         {
             Vector3 forward = new Vector3(lookTarget.x, transform.position.y, lookTarget.z) - transform.position;
             desiredRotation = Quaternion.LookRotation(forward.normalized, Vector3.up);
+        }
+        if (isInKnockback)
+        {
+            desiredRotation = Quaternion.LookRotation(knockbackDirection, Vector3.up);
         }
 
         var rot = Quaternion.Lerp(model.transform.rotation, desiredRotation, stats.rotationDamping * Time.deltaTime);
@@ -287,6 +310,33 @@ public class Entity : MonoBehaviour
     {
         lookTarget = target;
     }
+
+    #endregion
+
+    #endregion
+
+    #region general visuals
+
+    #region outline
+
+    [SerializeField] GameObject outlineObject;
+
+    void OutlineStart()
+    {
+        outlineObject.SetActive(false);
+    }
+
+    public void Outline()
+    {
+        outlineObject.SetActive(true);
+    }
+
+    public void UnOutline()
+    {
+        outlineObject.SetActive(false);
+    }
+
+    #endregion
 
     #endregion
 }

@@ -17,3 +17,7 @@ MonoBehaviour:
     canDamage: 1
     team: {fileID: 11400000, guid: 47f2b22a592779a4ba865e7b3ee8d100, type: 2}
     relationship: 0
+  - name: Monsters
+    canDamage: 1
+    team: {fileID: 11400000, guid: 40c6e33cc70284743a4fb85004300ed7, type: 2}
+    relationship: 1

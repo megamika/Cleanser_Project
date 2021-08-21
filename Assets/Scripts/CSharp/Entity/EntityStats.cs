@@ -19,3 +19,4 @@ public class EntityStats : ScriptableObject
     [Rename("Damping")]
     public float rotationDamping;
 }
+

@@ -13,7 +13,6 @@ public class DamageEventCatcher : MonoBehaviour
 
     public void AttackDamage(int i)
     {
-        Debug.Log("Trying to inflict damage");
         entity.DamageAnimationEvent(i);
     }
 

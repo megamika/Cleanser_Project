@@ -13,5 +13,34 @@ MonoBehaviour:
   m_Name: Box
   m_EditorClassIdentifier: 
   team: {fileID: 11400000, guid: 47f2b22a592779a4ba865e7b3ee8d100, type: 2}
+  MaxHealth: 10
   movementSpeed: 0
+  movementSpeedWhenAttacking: 0
+  simpleKnockback:
+    value: 100
+    time: 0.4
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -2.743106
+        outSlope: -2.743106
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.108333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -0.20494469
+        outSlope: -0.20494469
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.24166667
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   rotationDamping: 0

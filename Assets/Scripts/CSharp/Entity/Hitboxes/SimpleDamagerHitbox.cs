@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SimpleDamagerHitbox : MonoBehaviour, Hitbox
 {
+    public bool doKnockback;
+
     List<Entity> entitiesInside = new List<Entity>();
     public Entity parent { get; private set; }
     public HitboxType hitboxType => HitboxType.Damager;
@@ -23,6 +25,7 @@ public class SimpleDamagerHitbox : MonoBehaviour, Hitbox
         foreach (var entity in entitiesInside)
         {
             entity.RecieveDamage(damage);
+            if (doKnockback) entity.RecieveKnockback(parent.transform.position);
         }
     }
 

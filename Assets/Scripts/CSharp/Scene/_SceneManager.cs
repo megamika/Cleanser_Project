@@ -16,16 +16,21 @@ public class _SceneManager : MonoBehaviour
     public Vector3 worldMousePosition { get; private set; }
     public Vector2 lookDelta { get; private set; }
 
+    public Entity[] allEntities;
+    Entity previouslyOutlinedEntity;
+
     private void Awake()
     {
         singleton = this;
         inputActions = new DefaultInputActions();
         mainCamera = Camera.main;
         player = GameObject.FindWithTag("Player");
+        allEntities = FindObjectsOfType<Entity>(true);
     }
 
     private void Start()
     {
+        #region input actions assignment
         inputActions.Player.Move.performed += ctx => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Move { value = ctx.ReadValue<Vector2>() });
         inputActions.Player.Move.canceled += ctx => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Move { value = ctx.ReadValue<Vector2>() });
         inputActions.Player.Attack.performed += _ => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Attack());
@@ -33,6 +38,14 @@ public class _SceneManager : MonoBehaviour
         inputActions.Player.MousePosition.performed += ctx => MousePositionToWorldPosition(ctx.ReadValue<Vector2>());
         inputActions.Player.Delta.performed += ctx => lookDelta = ctx.ReadValue<Vector2>();
         inputActions.Player.Delta.canceled += ctx => lookDelta = ctx.ReadValue<Vector2>();
+        #endregion
+    }
+
+    public void Outline(Entity entity)
+    {
+        previouslyOutlinedEntity.UnOutline();
+        previouslyOutlinedEntity = entity;
+        entity.Outline();
     }
 
     void MousePositionToWorldPosition(Vector2 mousePosition)
