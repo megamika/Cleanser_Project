@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ludiq;
+using System;
 
 [IncludeInSettings(true)]
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, Damager
 {
     //public stuff
     public EntityStats _stats => stats;
+    public CharacterController _characterController => characterController;
 
     Animator anim;
     RootTransforms rootTransforms;
     CharacterController characterController;
-    SimpleDamagerHitbox damagerHitbox;
+    EquippedObjects equippedObjects;
 
     [SerializeField] EntityStats stats;
     [SerializeField] GameObject model;
+
+    public bool isEntity => true;
+    public Entity entity => this;
 
 
 
@@ -24,14 +29,18 @@ public class Entity : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rootTransforms = GetComponentInChildren<RootTransforms>();
         characterController = GetComponent<CharacterController>();
-        damagerHitbox = GetComponentInChildren<SimpleDamagerHitbox>();
+        equippedObjects = GetComponent<EquippedObjects>();
     }
 
     private void Start()
     {
+        if (anim == null) enabled = false;
+
+        UnOutline();
         MovementStart();
         StartHealth();
         RotationStart();
+        GravityStart();
     }
 
     private void Update()
@@ -39,6 +48,8 @@ public class Entity : MonoBehaviour
         MoversUpdate();
         MovementUpdate();
         RotationUpdate();
+        AttackUpdate();
+        GravityUpdate();
     }
 
     #region general combat
@@ -74,21 +85,22 @@ public class Entity : MonoBehaviour
     #endregion
 
     #region damage recieve
-    Vector3 knockbackDirection;
 
-    public void RecieveDamage(float damage)
+    public void Damage(DamageData damageData)
     {
-        health -= damage;
-        Debug.Log("Entity " + name + " revieved " + damage.ToString() + " damage.");
+        health -= damageData.damage;
+        anim.SetFloat("Knockback", damageData.knockback);
+        RecieveKnockback(damageData.source);
     }
 
     #region knockback
+    Vector3 knockbackDirection;
 
     public bool isInKnockback { get; set; }
 
     public void RecieveKnockback(Vector3 source)
     {
-        anim.Play("Knockback");
+        anim.SetTrigger("Knockback");
         knockbackDirection = (source - transform.position).normalized;
         knockbackDirection = new Vector3(knockbackDirection.x, 0, knockbackDirection.z);
     }
@@ -100,7 +112,7 @@ public class Entity : MonoBehaviour
 
     public void DamageAnimationEvent(int i)
     {
-        damagerHitbox.DamageEntitiesInside(2f);
+        equippedObjects.DealDamage(1f);
     }
 
     #endregion
@@ -109,6 +121,8 @@ public class Entity : MonoBehaviour
     string currentAttackName;
     bool _isAttacking;
     public bool readyToAttackTransition;
+    Vector3 attackMouseTarget;
+
     public bool isAttacking
     {
         get
@@ -145,6 +159,47 @@ public class Entity : MonoBehaviour
     {
         if (isDashing) return;
         anim?.Play(attackName);
+        attackMouseTarget = _SceneManager.singleton.worldMousePosition;
+    }
+
+    public void OnAttackStarted()
+    {
+        Vector3 result = (lookTarget - transform.position);
+        Debug.DrawRay(transform.position, result * 3f, Color.red, 1f);
+        result = new Vector3(result.x, 0f, result.z);
+        attackLookTarget = result;
+    }
+
+    Coroutine comboClearRoutine;
+
+    public void OnAttackStopped()
+    {
+
+    }
+
+    float isAttackingTime;
+    float isNotAttackingTime;
+
+    void AttackUpdate()
+    {
+        anim.SetBool("ReadyToAttackTransition", readyToAttackTransition);
+        anim.SetBool("IsAttacking", isAttacking);
+        
+        if (isAttacking)
+        {
+            isNotAttackingTime = 0f;
+            isAttackingTime += Time.deltaTime;
+        }
+        else
+        {
+            isAttackingTime = 0f;
+            isNotAttackingTime += Time.deltaTime;
+        }
+
+        if (isNotAttackingTime > 0.1f)
+        {
+            currentAttackName = "";
+        }
     }
 
     [System.Serializable]
@@ -154,14 +209,7 @@ public class Entity : MonoBehaviour
         public string[] attackNames;
         public bool hasAttackName(string name)
         {
-            for (int i = 0; i < attackNames.Length; i++)
-            {
-                if ( attackNames[i] == name)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return System.Array.Exists(attackNames, element => element == name);
         }
         public string nextAttackName(string name)
         {
@@ -277,9 +325,26 @@ public class Entity : MonoBehaviour
 
     #endregion
 
+    #region gravity
+
+    Mover gravity = new Mover();
+
+    void GravityStart()
+    {
+        movers.Add(gravity);
+    }
+
+    void GravityUpdate()
+    {
+        gravity.value = Vector3.down * stats.GravityForce;
+    }
+
+    #endregion
+
     #region rotation
     Quaternion desiredRotation;
     Vector3 lookTarget;
+    Vector3 attackLookTarget;
 
     void RotationStart()
     {
@@ -287,22 +352,24 @@ public class Entity : MonoBehaviour
     }
 
     void RotationUpdate()
-    { 
+    {
+        float damping = stats.rotationDamping;
         if (isMoving)
         {
             desiredRotation = Quaternion.LookRotation(movement.value, Vector3.up);
         }
         if (isAttacking)
         {
-            Vector3 forward = new Vector3(lookTarget.x, transform.position.y, lookTarget.z) - transform.position;
-            desiredRotation = Quaternion.LookRotation(forward.normalized, Vector3.up);
+            Vector3 forward = new Vector3(attackLookTarget.x, 0f, attackLookTarget.z);
+            desiredRotation = Quaternion.LookRotation(forward, Vector3.up);
+            damping = stats.attackDamping;
         }
         if (isInKnockback)
         {
             desiredRotation = Quaternion.LookRotation(knockbackDirection, Vector3.up);
         }
 
-        var rot = Quaternion.Lerp(model.transform.rotation, desiredRotation, stats.rotationDamping * Time.deltaTime);
+        var rot = Quaternion.Lerp(model.transform.rotation, desiredRotation, damping * Time.deltaTime);
         model.transform.rotation = rot;
     }
 
@@ -317,6 +384,13 @@ public class Entity : MonoBehaviour
 
     #region general visuals
 
+    #region swinging
+
+    public Action OnSwingStart;
+    public Action OnSwingEnd;
+
+    #endregion
+
     #region outline
 
     [SerializeField] GameObject outlineObject;
@@ -328,11 +402,13 @@ public class Entity : MonoBehaviour
 
     public void Outline()
     {
+        if (outlineObject == null) return;
         outlineObject.SetActive(true);
     }
 
     public void UnOutline()
     {
+        if (outlineObject == null) return;
         outlineObject.SetActive(false);
     }
 

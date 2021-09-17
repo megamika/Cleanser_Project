@@ -15,5 +15,8 @@ MonoBehaviour:
   team: {fileID: 11400000, guid: 7fe1314934dcfde4c8add8e753ac03e7, type: 2}
   MaxHealth: 10
   movementSpeed: 1
-  movementSpeedWhenAttacking: 3
-  rotationDamping: 50
+  movementSpeedWhenAttacking: 0
+  GravityForce: 9.8
+  rotationDamping: 25
+  attackDamping: 60
+  comboClearTime: 1

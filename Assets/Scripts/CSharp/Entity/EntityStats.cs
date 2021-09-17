@@ -15,8 +15,16 @@ public class EntityStats : ScriptableObject
     [Rename("When Attacking Speed")]
     public float movementSpeedWhenAttacking;
 
+    [Header("Gravity")]
+    public float GravityForce = 9.8f;
+
     [Header("Rotation")]
     [Rename("Damping")]
     public float rotationDamping;
+    public float attackDamping;
+
+    [Header("Attack")]
+    public float comboClearTime;
+
 }
 

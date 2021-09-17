@@ -13,11 +13,14 @@ public class _SceneManager : MonoBehaviour
     public Camera mainCamera { get; private set; }
     public GameObject player { get; private set; }
 
+    public Vector3 mousePosition { get; private set; }
     public Vector3 worldMousePosition { get; private set; }
     public Vector2 lookDelta { get; private set; }
 
-    public Entity[] allEntities;
-    Entity previouslyOutlinedEntity;
+    public Entity[] allEntities { get; set; }
+    public Entity previouslyOutlinedEntity { get; private set; }
+
+    [SerializeField] float selectionRadius;
 
     private void Awake()
     {
@@ -34,18 +37,25 @@ public class _SceneManager : MonoBehaviour
         inputActions.Player.Move.performed += ctx => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Move { value = ctx.ReadValue<Vector2>() });
         inputActions.Player.Move.canceled += ctx => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Move { value = ctx.ReadValue<Vector2>() });
         inputActions.Player.Attack.performed += _ => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Attack());
+        inputActions.Player.Attack.performed += _ => Select();
         inputActions.Player.Dash.performed += _ => DefinedEvent.TriggerGlobal(new DefinedEvents.Input.Dash());
-        inputActions.Player.MousePosition.performed += ctx => MousePositionToWorldPosition(ctx.ReadValue<Vector2>());
+        inputActions.Player.MousePosition.performed += ctx => mousePosition = ctx.ReadValue<Vector2>();
         inputActions.Player.Delta.performed += ctx => lookDelta = ctx.ReadValue<Vector2>();
         inputActions.Player.Delta.canceled += ctx => lookDelta = ctx.ReadValue<Vector2>();
         #endregion
     }
 
-    public void Outline(Entity entity)
+    void Outline(Entity entity)
     {
-        previouslyOutlinedEntity.UnOutline();
+        previouslyOutlinedEntity?.UnOutline();
         previouslyOutlinedEntity = entity;
         entity.Outline();
+    }
+
+    void UnUutline()
+    {
+        previouslyOutlinedEntity?.UnOutline();
+        previouslyOutlinedEntity = null;
     }
 
     void MousePositionToWorldPosition(Vector2 mousePosition)
@@ -59,7 +69,51 @@ public class _SceneManager : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(enter);
             worldMousePosition = hitPoint;
         }
-        
+    }
+
+    void Select()
+    {
+        Collider[] entityColliders = Physics.OverlapSphere(worldMousePosition, selectionRadius, LayerMask.GetMask("Entity"));
+
+        if (entityColliders.Length == 1)
+        {
+            if (entityColliders[0].gameObject == player)
+            {
+                UnUutline();
+                return;
+            }
+        }
+
+        if (entityColliders.Length <= 0)
+        {
+            UnUutline();
+            return;
+        }
+
+        Collider closestCollider = null;
+        float minDistance = float.MaxValue;
+
+        foreach (var collider in entityColliders)
+        {
+            if (collider.gameObject == player) continue;
+
+            float distance = Vector3.Distance(worldMousePosition, collider.ClosestPoint(worldMousePosition));
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestCollider = collider;
+            }
+        }
+
+        Debug.Log(closestCollider);
+        Entity entitySelected = closestCollider.gameObject.GetComponent<Entity>();
+        Debug.Log(entitySelected);
+        Outline(entitySelected);
+    }
+
+    private void Update()
+    {
+        MousePositionToWorldPosition(mousePosition);
     }
 
     private void OnEnable()

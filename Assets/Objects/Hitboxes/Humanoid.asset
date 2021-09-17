@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d134e2d98014a42b311e02c00d842c, type: 3}
+  m_Name: Humanoid
+  m_EditorClassIdentifier: 
+  hitboxInfo:
+    hitboxes:
+    - name: DEF-spine
+      path:
+      - root
+      - DEF-spine
+      offset: {x: 6.755497e-11, y: 0.11841454, z: 0.035267577}
+      size: {x: 0.6918696, y: 0.46123922, z: 0.4126239}
+    - name: DEF-spine.001
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      offset: {x: 7.732509e-11, y: 0.16042385, z: 0.05481675}
+      size: {x: 0.55291414, y: 0.35091653, z: 0.348675}
+    - name: DEF-spine.002
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      offset: {x: -9.285678e-11, y: 0.17682502, z: -0.03488433}
+      size: {x: 0.5595779, y: 0.389294, z: 0.5060702}
+    - name: DEF-spine.003
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      offset: {x: 5.0541904e-11, y: 0.19693458, z: -0.026866345}
+      size: {x: 0.7747647, y: 0.5167182, z: 0.5790337}
+    - name: DEF-upper_arm.L
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-shoulder.L
+      - DEF-upper_arm.L
+      offset: {x: 0.00000075711864, y: 0.3009453, z: 0.0000012448053}
+      size: {x: 0.22083844, y: 0.59691805, z: 0.22890134}
+    - name: DEF-forearm.L
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-shoulder.L
+      - DEF-upper_arm.L
+      - DEF-forearm.L
+      offset: {x: 0.010517661, y: 0.43288392, z: -0.016161067}
+      size: {x: 0.1814393, y: 0.79839474, z: 0.1752461}
+    - name: DEF-hand.L
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-shoulder.L
+      - DEF-upper_arm.L
+      - DEF-forearm.L
+      - DEF-hand.L
+      offset: {x: 0.0000011467032, y: 0.06727106, z: -0.028300006}
+      size: {x: 0.15169966, y: 0.4121399, z: 0.21470033}
+    - name: DEF-upper_arm.R
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-shoulder.R
+      - DEF-upper_arm.R
+      offset: {x: 0.00000075711864, y: 0.3009453, z: 0.0000012448053}
+      size: {x: 0.22083844, y: 0.59691805, z: 0.22890134}
+    - name: DEF-forearm.R
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-shoulder.R
+      - DEF-upper_arm.R
+      - DEF-forearm.R
+      offset: {x: 0.010517661, y: 0.43288392, z: -0.016161067}
+      size: {x: 0.1814393, y: 0.79839474, z: 0.1752461}
+    - name: DEF-hand.R
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-shoulder.R
+      - DEF-upper_arm.R
+      - DEF-forearm.R
+      - DEF-hand.R
+      offset: {x: 0.0000011467032, y: 0.06727106, z: -0.028300006}
+      size: {x: 0.15169966, y: 0.4121399, z: 0.21470033}
+    - name: DEF-head
+      path:
+      - root
+      - DEF-spine
+      - DEF-spine.001
+      - DEF-spine.002
+      - DEF-spine.003
+      - DEF-spine.004
+      - DEF-neck
+      - DEF-head
+      offset: {x: 3.3008044e-10, y: 0.18478455, z: -0.09221359}
+      size: {x: 0.5170251, y: 0.6707905, z: 0.5994002}
+    - name: DEF-thigh.L
+      path:
+      - root
+      - DEF-spine
+      - DEF-thigh.L
+      offset: {x: 0.00000044079894, y: 0.5264444, z: 0.0626473}
+      size: {x: 0.34080923, y: 1.0481687, z: 0.30637404}
+    - name: DEF-shin.L
+      path:
+      - root
+      - DEF-spine
+      - DEF-thigh.L
+      - DEF-shin.L
+      offset: {x: -0.0000034131963, y: 0.50746495, z: 0.091903724}
+      size: {x: 0.24317326, y: 1.0510217, z: 0.2900904}
+    - name: DEF-foot.L
+      path:
+      - root
+      - DEF-spine
+      - DEF-thigh.L
+      - DEF-shin.L
+      - DEF-foot.L
+      offset: {x: -0.00000001627, y: 0.13206173, z: 0.007493437}
+      size: {x: 0.25917414, y: 0.43463627, z: 0.22239259}
+    - name: DEF-thigh.R
+      path:
+      - root
+      - DEF-spine
+      - DEF-thigh.R
+      offset: {x: 0.00000044079894, y: 0.5264444, z: 0.0626473}
+      size: {x: 0.34080923, y: 1.0481687, z: 0.30637404}
+    - name: DEF-shin.R
+      path:
+      - root
+      - DEF-spine
+      - DEF-thigh.R
+      - DEF-shin.R
+      offset: {x: -0.0000034131963, y: 0.50746495, z: 0.091903724}
+      size: {x: 0.24317326, y: 1.0510217, z: 0.2900904}
+    - name: DEF-foot.R
+      path:
+      - root
+      - DEF-spine
+      - DEF-thigh.R
+      - DEF-shin.R
+      - DEF-foot.R
+      offset: {x: -0.00000001627, y: 0.13206173, z: 0.007493437}
+      size: {x: 0.25917414, y: 0.43463627, z: 0.22239259}

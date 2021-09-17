@@ -20,4 +20,14 @@ public class DamageEventCatcher : MonoBehaviour
     {
         entity.readyToAttackTransition = true;
     }
+
+    public void SwingStart()
+    {
+        entity.OnSwingStart?.Invoke();
+    }
+
+    public void SwingEnd()
+    {
+        entity.OnSwingEnd?.Invoke();
+    }
 }
