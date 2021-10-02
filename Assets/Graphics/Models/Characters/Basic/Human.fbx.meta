@@ -80,12 +80,10 @@ ModelImporter:
       'rig|Attack3' has import animation warnings that might lower retargeting quality:\nNote:
       Activate translation DOF on avatar to improve retargeting quality.\n\t'DEF-spine.004'
       is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.L'
-      has translation animation that will be discarded.\n\t'DEF-upper_arm.L' has
-      scale animation that will be discarded.\n\t'DEF-forearm.L' has scale animation
-      that will be discarded.\n\t'DEF-hand.L' has scale animation that will be discarded.\n\t'DEF-upper_arm.R'
       has translation animation that will be discarded.\n\t'DEF-upper_arm.R' has
-      scale animation that will be discarded.\n\t'DEF-forearm.R' has scale animation
-      that will be discarded.\n\t'DEF-hand.R' has scale animation that will be discarded.\n\t'DEF-thigh.L'
+      translation animation that will be discarded.\n\t'DEF-upper_arm.R' has scale
+      animation that will be discarded.\n\t'DEF-forearm.R' has scale animation that
+      will be discarded.\n\t'DEF-hand.R' has scale animation that will be discarded.\n\t'DEF-thigh.L'
       has scale animation that will be discarded.\n\t'DEF-shin.L' has scale animation
       that will be discarded.\n\t'DEF-foot.L' has scale animation that will be discarded.\n\t'DEF-thigh.R'
       has scale animation that will be discarded.\n\t'DEF-shin.R' has scale animation
@@ -108,11 +106,7 @@ ModelImporter:
       that will be discarded.\n\t'DEF-foot.R' has scale animation that will be discarded.\n\nClip
       'rig|FloatForward' has import animation warnings that might lower retargeting
       quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'DEF-spine.004'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-upper_arm.L'
-      has scale animation that will be discarded.\n\t'DEF-forearm.L' has scale animation
-      that will be discarded.\n\t'DEF-hand.L' has scale animation that will be discarded.\n\t'DEF-upper_arm.R'
-      has scale animation that will be discarded.\n\t'DEF-forearm.R' has scale animation
-      that will be discarded.\n\t'DEF-hand.R' has scale animation that will be discarded.\n\t'DEF-thigh.L'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'DEF-thigh.L'
       has scale animation that will be discarded.\n\t'DEF-shin.L' has scale animation
       that will be discarded.\n\t'DEF-foot.L' has scale animation that will be discarded.\n\t'DEF-thigh.R'
       has scale animation that will be discarded.\n\t'DEF-shin.R' has scale animation
@@ -170,7 +164,7 @@ ModelImporter:
       name: rig|Attack1
       takeName: rig|Attack1
       internalID: 0
-      firstFrame: 0
+      firstFrame: 2
       lastFrame: 69
       wrapMode: 0
       orientationOffsetY: 0
@@ -227,7 +221,7 @@ ModelImporter:
       name: rig|Attack2
       takeName: rig|Attack2
       internalID: 0
-      firstFrame: 0
+      firstFrame: 2
       lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
@@ -284,7 +278,7 @@ ModelImporter:
       name: rig|Attack3
       takeName: rig|Attack3
       internalID: 0
-      firstFrame: 0
+      firstFrame: 2
       lastFrame: 54
       wrapMode: 0
       orientationOffsetY: 0
@@ -342,7 +336,7 @@ ModelImporter:
       takeName: rig|Dash
       internalID: 0
       firstFrame: 0
-      lastFrame: 23.2
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
