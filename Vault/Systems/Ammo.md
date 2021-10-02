@@ -1,0 +1,1 @@
+The equipment can only be used if you have enough [[Ammo]] to use it. The game has the same ammo type for all ammo based weapons, however they might use different amounts of it. The ammo can usually be bought from the [[Trader]] or [[Crafted]].

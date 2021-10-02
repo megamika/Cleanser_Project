@@ -1,0 +1,1 @@
+A cooldown will recharge over time, but you will have to not use the [[Equipment]] for some time before it will start recharging, you also can't use the [[Equipment]] if it is charged below a certain threshold.

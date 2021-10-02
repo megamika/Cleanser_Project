@@ -1,0 +1,3 @@
+[[Weapons]] [[Wearables]]
+
+#equipment 

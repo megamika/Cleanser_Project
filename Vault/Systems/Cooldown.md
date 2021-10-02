@@ -1,0 +1,1 @@
+An invisible cooldown, usually just to prevent you from using [[Abilities]] or [[Weapons]] every frame or using it before the animation is over.
