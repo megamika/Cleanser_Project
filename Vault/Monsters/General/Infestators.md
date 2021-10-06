@@ -1,1 +1,0 @@
-The infestators are [[Monsters]] capable of [[Infection]]

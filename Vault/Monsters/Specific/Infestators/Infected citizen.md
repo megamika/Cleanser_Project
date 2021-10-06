@@ -1,1 +1,0 @@
-A [[Regular Citizen]] that has been attacked using the [[Infection]] ability.

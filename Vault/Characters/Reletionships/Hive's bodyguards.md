@@ -1,0 +1,3 @@
+Even though [[Loner]] absolutely despises working alone, he has one exception and that exception is the [[Protector]]. He is the only [[Infestators]] with whom he will team up. Those 2 are really strong bodyguards for the [[Hive]].
+
+The [[Hive]] can also chose to consume both the [[Loner]] and the [[Protector]] to increase his own strenth or rather combine them since he is the central hive and one intellegense for the whole [[Plague]].

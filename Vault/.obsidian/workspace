@@ -7,8 +7,11 @@
         "id": "73eca82d326cb5f2",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "Places/Drylands.md",
+            "mode": "source"
+          }
         },
         "group": "be693aad39370b7d"
       },
@@ -78,6 +81,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Places/Drylands.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,15 +101,15 @@
   },
   "active": "73eca82d326cb5f2",
   "lastOpenFiles": [
-    "Places/Floating lands.md",
-    "Art/References/World/World.md",
-    "Art/References/Untitled.md",
-    "Art/Concept Art/Character art/1st gen cleaner 1.png",
-    "Art/Concept Art/Character art/Cleaner.png",
-    "Equipment/Weapons/Types/Tertiary weapon.md",
-    "Equipment/Weapons/Types/Secondary Weapons.md",
-    "Equipment/Weapons/Types/Primary Weapons.md",
-    "Systems/Controlls/Buttons/Primarry Attack Button.md",
-    "Equipment/Equipment.md"
+    "Places/Drylands.md",
+    "Pasted image 20211006122622.png",
+    "Pasted image 20211006120724.png",
+    "Characters/Reletionships/Untitled.md",
+    "Characters/Monsters/Specific/Infestators/Corrupted pack leader.md",
+    "Characters/Monsters/Specific/Infestators/Hive.md",
+    "Characters/Monsters/Monsters.md",
+    "Characters/Monsters/General/Infestators.md",
+    "Characters/Monsters/Specific/Infestators/Protector.md",
+    "Characters/Monsters/Specific/Infestators/Loner.md"
   ]
 }
