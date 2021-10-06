@@ -1,0 +1,1 @@
+You can trade with the [[Trader]] using the [[Currency]].

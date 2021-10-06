@@ -1,0 +1,1 @@
+Every killed [[Monsters]] drops valuable resources and [[Crafting]] components. You can chose to use them for [[Trading]] and sell them to the [[Trader]] to get the [[Currency]]. Some iteams are marked as a [[Collectable]] and these iteams are only useful for trading and selling.

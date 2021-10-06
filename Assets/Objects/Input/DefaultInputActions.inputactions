@@ -44,6 +44,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SecondaryAttack",
+                    "type": "Button",
+                    "id": "e3647967-b35e-4aae-80f8-e6a3be9d8174",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TertiaryAttack",
+                    "type": "Button",
+                    "id": "cf1e1f88-7ed4-4890-98ee-5ff088d66bc6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -143,6 +159,28 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f851124f-fdfa-43c1-901a-49c83551d6da",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "SecondaryAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57213f9d-3716-4dae-9bee-4a814adf4f72",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "TertiaryAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

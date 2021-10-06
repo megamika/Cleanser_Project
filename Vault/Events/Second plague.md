@@ -1,0 +1,1 @@
+During the second plague the [[Cleaner]]'s hideout has been attacked by the [[Infestators]] once again. As it turns out [[Infestators]] attack repeatedly every few years and each time they become stronger and evolved to fight against the old tricks from the past.

@@ -23,4 +23,19 @@ public static class PathRecorder
         Array.Reverse(pathArray);
         return pathArray;
     }
+
+    public static Transform GetTransformFromPath(Transform mainTransform, string[] path)
+    {
+        Transform result = mainTransform;
+        foreach (var iteam in path)
+        {
+            result = result.Find(iteam);
+            if (result == null)
+            {
+                Debug.LogError("The path is not correct", mainTransform.gameObject);
+                break;
+            }
+        }
+        return result;
+    }
 }

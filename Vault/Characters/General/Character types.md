@@ -1,0 +1,5 @@
+[[1st Gen Cleaners]]
+[[2nd Gen Cleaners]]
+[[Human]]
+[[Regular Citizen]]
+[[Robots]]

@@ -1,1 +1,1 @@
-2nd tier infection can infect humans who wear a [[Respirator]] and they will also keep their ability to weild [[Weapons]] so they will attack [[Humans]] with whatever weapon they had equipped without any regard for their life.
+2nd tier infection can infect humans who wear a [[Respirator]] and they will also keep their ability to weild [[Weapons]] so they will attack [[Human]] with whatever weapon they had equipped without any regard for their life.

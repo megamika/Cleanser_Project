@@ -23,6 +23,8 @@ public class Entity : MonoBehaviour, Damager
     public Entity entity => this;
 
 
+    public bool inAimMode;
+
 
     private void Awake()
     {
@@ -112,7 +114,7 @@ public class Entity : MonoBehaviour, Damager
 
     public void DamageAnimationEvent(int i)
     {
-        equippedObjects.DealDamage(1f);
+
     }
 
     #endregion
@@ -255,6 +257,9 @@ public class Entity : MonoBehaviour, Damager
     #region movement
     Mover movement = new Mover();
     Vector3 movementDir => new Vector3(_horizontal, 0f, _vertical);
+    Vector3 nonZeroMovementDir = Vector3.forward;
+    Vector3 desiredMovementValue;
+    Vector3 movementVelocity;
     bool isMoving;
 
     void MovementStart()
@@ -266,10 +271,9 @@ public class Entity : MonoBehaviour, Damager
     {
         isMoving = movementDir.magnitude > 0f;
         Vector3 rootTransformInfluence = Vector3.one;
-        if (rootTransforms != null)
-        {
-            rootTransformInfluence = rootTransforms.deltaPositionUnscaled;
-        }
+
+        rootTransformInfluence = rootTransforms.deltaPositionUnscaled;
+
 
         Quaternion relativeTo = Quaternion.Euler(0, 0, 0);
         if (_localTo != null)
@@ -277,21 +281,47 @@ public class Entity : MonoBehaviour, Damager
             relativeTo = Quaternion.Euler(0f, _localTo.transform.eulerAngles.y, 0f);
         }
 
-        if (isMoving & !isAttacking)
-        {
-            movement.value = relativeTo * movementDir * rootTransformInfluence.magnitude * stats.movementSpeed;
-        }
-        else if(rootTransforms != null) 
+        if (isAttacking)
         {
             Vector3 attackingInfluence = Vector3.zero;
             if (isAttacking)
             {
                 attackingInfluence = relativeTo * movementDir * stats.movementSpeedWhenAttacking;
             }
-            movement.value = rootTransformInfluence + attackingInfluence;
+            desiredMovementValue = rootTransformInfluence + attackingInfluence;
+
+            movement.value = desiredMovementValue;
         }
-        anim?.SetBool("Run", isMoving);
+        else if (isDashing)
+        {
+            desiredMovementValue = relativeTo * movementDirWhenDashed * rootTransformInfluence.magnitude;
+
+            movement.value = desiredMovementValue;
+        }
+        else
+        {
+            desiredMovementValue = relativeTo * movementDir * stats.movementSpeed;
+
+            movement.value = Vector3.SmoothDamp(movement.value, desiredMovementValue, ref movementVelocity, stats.movementSmoothTime, 1000f, Time.deltaTime);
+        }
+
+        anim?.SetFloat("Speed", movement.value.magnitude /stats.movementSpeed);
+
+        Vector3 movementAnimValues = model.transform.InverseTransformDirection(desiredMovementValue);
+        movementAnimValues.Normalize();
+
+        Debug.DrawLine(transform.position, transform.position + model.transform.rotation * movementAnimValues);
+
+        anim?.SetFloat("MovementX", movementAnimValues.x);
+        anim?.SetFloat("MovementY", movementAnimValues.z);
+
+        if (movementDir.magnitude > 0f)
+        {
+            nonZeroMovementDir = movementDir;
+        }
     }
+
+    [SerializeField] float rotationOffsetTest;
 
     float _horizontal;
     float _vertical;
@@ -313,11 +343,13 @@ public class Entity : MonoBehaviour, Damager
 
     #region dashing
 
+    Vector3 movementDirWhenDashed;
     public bool isDashing { get; set; }
 
     public void Dash(string name)
     {
         if (isDashing) return;
+        movementDirWhenDashed = nonZeroMovementDir;
         anim.Play(name);
     }
 
@@ -354,10 +386,21 @@ public class Entity : MonoBehaviour, Damager
     void RotationUpdate()
     {
         float damping = stats.rotationDamping;
-        if (isMoving)
+
+        if (isMoving & !inAimMode)
         {
             desiredRotation = Quaternion.LookRotation(movement.value, Vector3.up);
         }
+        if (inAimMode)
+        {
+            desiredRotation = Quaternion.LookRotation(lookTarget - transform.position, Vector3.up);
+            anim.SetLayerWeight(anim.GetLayerIndex("Aimed"), 1f);
+        }
+        else
+        {
+            anim.SetLayerWeight(anim.GetLayerIndex("Aimed"), 0f);
+        }
+
         if (isAttacking)
         {
             Vector3 forward = new Vector3(attackLookTarget.x, 0f, attackLookTarget.z);

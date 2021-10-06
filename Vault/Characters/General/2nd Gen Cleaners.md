@@ -1,0 +1,1 @@
+The current generation of cleaners which you are a leader of or the only memeber. You will be able to recruit [[Regular Citizen]]s that you have saved and give them [[Equipment]] for them to help you in your quest.

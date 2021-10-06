@@ -1,0 +1,1 @@
+Plague is an event that happens every few years where the [[Infestators]] decide to attack usually smarter and more evolved then in the last [[Plague]].

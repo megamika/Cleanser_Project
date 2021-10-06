@@ -57,6 +57,22 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SecondaryAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3647967-b35e-4aae-80f8-e6a3be9d8174"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TertiaryAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf1e1f88-7ed4-4890-98ee-5ff088d66bc6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +174,28 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f851124f-fdfa-43c1-901a-49c83551d6da"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""SecondaryAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57213f9d-3716-4dae-9bee-4a814adf4f72"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""TertiaryAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -177,6 +215,8 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         m_Player_Delta = m_Player.FindAction("Delta", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_SecondaryAttack = m_Player.FindAction("SecondaryAttack", throwIfNotFound: true);
+        m_Player_TertiaryAttack = m_Player.FindAction("TertiaryAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -231,6 +271,8 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MousePosition;
     private readonly InputAction m_Player_Delta;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_SecondaryAttack;
+    private readonly InputAction m_Player_TertiaryAttack;
     public struct PlayerActions
     {
         private @DefaultInputActions m_Wrapper;
@@ -240,6 +282,8 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputAction @Delta => m_Wrapper.m_Player_Delta;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @SecondaryAttack => m_Wrapper.m_Player_SecondaryAttack;
+        public InputAction @TertiaryAttack => m_Wrapper.m_Player_TertiaryAttack;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -264,6 +308,12 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @SecondaryAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
+                @SecondaryAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
+                @SecondaryAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryAttack;
+                @TertiaryAttack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTertiaryAttack;
+                @TertiaryAttack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTertiaryAttack;
+                @TertiaryAttack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTertiaryAttack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -283,6 +333,12 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @SecondaryAttack.started += instance.OnSecondaryAttack;
+                @SecondaryAttack.performed += instance.OnSecondaryAttack;
+                @SecondaryAttack.canceled += instance.OnSecondaryAttack;
+                @TertiaryAttack.started += instance.OnTertiaryAttack;
+                @TertiaryAttack.performed += instance.OnTertiaryAttack;
+                @TertiaryAttack.canceled += instance.OnTertiaryAttack;
             }
         }
     }
@@ -303,5 +359,7 @@ public class @DefaultInputActions : IInputActionCollection, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnDelta(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnSecondaryAttack(InputAction.CallbackContext context);
+        void OnTertiaryAttack(InputAction.CallbackContext context);
     }
 }

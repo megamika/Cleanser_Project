@@ -5,72 +5,16 @@ using Bolt.Addons.Community;
 
 public class HoldableObject : MonoBehaviour
 {
-    Entity entity;
-
-    public Type type;
-
     public Transform rigTransform;
-    public string[] path;
-
-    [Header("Stats")]
-    [SerializeField] float damage;
-
-    [Header("ChildOf")]
     public Transform parent;
-    [SerializeField] Vector3 rotationOffset;
-    [SerializeField] Vector3 positionOffset;
 
-    public List<Entity> entitiesInside = new List<Entity>();
+    public HoldableSlot equipped;
 
-    private void Awake()
-    {
-        entity = GetComponentInParent<Entity>();
-        entity.OnSwingStart += ()=> DefinedEvent.Trigger(gameObject, new DefinedEvents.Visuals.StartSwinging());
-        entity.OnSwingEnd += ()=> DefinedEvent.Trigger(gameObject, new DefinedEvents.Visuals.StopSwinging());
-    }
-
-    private void Start()
-    {
-        switch (type)
-        {
-            case Type.None:
-                break;
-            case Type.Damaging:
-                gameObject.layer = LayerMask.NameToLayer("Hitboxes");
-                break;
-            default:
-                break;
-        }
-    }
+    public HoldableSlot unEquipped;
 
     public void LateUpdate()
     {
-       transform.position = parent.transform.position + parent.transform.rotation * positionOffset;
-       transform.rotation = parent.transform.rotation * Quaternion.Euler(rotationOffset);
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Entity otherEntity = other.GetComponent<HitboxTransform>().entity;
-        if (otherEntity == entity)
-            return;
-        entitiesInside.Add(otherEntity);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Entity otherEntity = other.GetComponent<HitboxTransform>().entity;
-        if (otherEntity == entity)
-            return;
-        entitiesInside.Remove(otherEntity);
-    }
-
-    public void Damage(float damageMultiplyer)
-    {
-        foreach (var damagedEntity in entitiesInside)
-        {
-            damagedEntity.Damage(new DamageData { damage = damage * damageMultiplyer, damager = damagedEntity, knockback = 0f, source = entity.transform.position });
-        }
     }
 
     public enum Type
@@ -78,4 +22,41 @@ public class HoldableObject : MonoBehaviour
         None,
         Damaging,
     }
+
+    public void SetupAllTransforms()
+    {
+        equipped.runtimeParent = PathRecorder.GetTransformFromPath(transform.parent, equipped.path);
+        unEquipped.runtimeParent = PathRecorder.GetTransformFromPath(transform.parent, unEquipped.path);
+    }
+
+    public void SetupSlotInfo(ref HoldableSlot slot)
+    {
+        Transform parentBefore = transform.parent;
+        transform.parent = parent;
+
+        slot = new HoldableSlot
+        {
+            path = PathRecorder.RecordPath(rigTransform, parent),
+            positionOffset = transform.localPosition,
+            rotationOffset = transform.localEulerAngles
+        };
+
+        transform.parent = parentBefore;
+    }
+
+    public void UpdateParent(HoldableSlot slot)
+    {
+        transform.position = slot.runtimeParent.transform.position + slot.runtimeParent.rotation * Vector3.Scale(slot.positionOffset, slot.runtimeParent.lossyScale);
+        transform.rotation = slot.runtimeParent.transform.rotation * Quaternion.Euler(slot.rotationOffset);
+    }
+}
+
+[System.Serializable]
+public struct HoldableSlot
+{
+    public string[] path;
+    public Vector3 rotationOffset;
+    public Vector3 positionOffset;
+
+    public Transform runtimeParent;
 }

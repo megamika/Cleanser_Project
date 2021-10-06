@@ -7,47 +7,45 @@ using UnityEditor;
 public class HoldableObjectEditorScript : Editor
 {
     HoldableObject holdableObject;
-    bool previewEnabled;
 
     public override void OnInspectorGUI()
     {
         holdableObject = target as HoldableObject;
 
-        if (!previewEnabled)
+        if (GUILayout.Button("Record equipped parent"))
         {
-            if (GUILayout.Button("Start child preview"))
-            {
-                previewEnabled = true;
-            }
-        }
-        else
-        {
-            if (GUILayout.Button("Stop child preview"))
-            {
-                previewEnabled = false;
-                holdableObject.transform.localPosition = Vector3.zero;
-                holdableObject.transform.localRotation = Quaternion.identity;
-            }
+            RecordEquippedPath();
         }
 
-        if (GUILayout.Button("Record parent"))
+        if (GUILayout.Button("Record unequipped parent"))
         {
-            RecordPath();
+            RecordUnEquippedPath();
+        }
+
+        GUILayout.Space(30);
+
+        if (GUILayout.Button("Snap to equipped"))
+        {
+            holdableObject.SetupAllTransforms();
+            holdableObject.UpdateParent(holdableObject.equipped);
+        }
+
+        if (GUILayout.Button("Snap to unequipped"))
+        {
+            holdableObject.SetupAllTransforms();
+            holdableObject.UpdateParent(holdableObject.unEquipped);
         }
 
         base.OnInspectorGUI();
     }
 
-    void RecordPath()
+    void RecordEquippedPath()
     {
-        holdableObject.path = PathRecorder.RecordPath(holdableObject.rigTransform, holdableObject.parent);
+        holdableObject.SetupSlotInfo(ref holdableObject.equipped);
     }
 
-    private void OnSceneGUI()
+    void RecordUnEquippedPath()
     {
-        if (previewEnabled)
-        {
-            holdableObject.LateUpdate();
-        }
+        holdableObject.SetupSlotInfo(ref holdableObject.unEquipped);
     }
 }

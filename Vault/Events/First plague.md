@@ -1,0 +1,1 @@
+During the first plague the [[Infestators]] has just been created and they have attacked the [[Drylands]]. Luckily [[1st Gen Cleaners]] have formed to oppose the [[Infestators]].

@@ -1,0 +1,1 @@
+An iteam that can be used anywhere assuming you are not in combat to summon the [[Trader]].

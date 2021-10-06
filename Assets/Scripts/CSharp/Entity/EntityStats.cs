@@ -12,6 +12,7 @@ public class EntityStats : ScriptableObject
     [Header("Movement")]
     [Rename("Speed Multiplyer")]
     public float movementSpeed;
+    public float movementSmoothTime;
     [Rename("When Attacking Speed")]
     public float movementSpeedWhenAttacking;
 
