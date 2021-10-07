@@ -7,25 +7,22 @@
         "id": "73eca82d326cb5f2",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "Places/Drylands.md",
-            "mode": "source"
-          }
+          "type": "graph",
+          "state": {}
         },
-        "group": "be693aad39370b7d"
+        "group": "c3251660e4fc5aba"
       },
       {
-        "id": "bc4c725e1b2b8fa6",
+        "id": "aa83db753a5edf38",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Places/Drylands.md",
-            "mode": "source"
+            "file": "Characters/Monsters/Specific/Infestators/Walker.md",
+            "mode": "preview"
           }
         },
-        "group": "be693aad39370b7d"
+        "group": "c3251660e4fc5aba"
       }
     ],
     "direction": "vertical"
@@ -81,7 +78,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Places/Drylands.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +97,15 @@
   },
   "active": "73eca82d326cb5f2",
   "lastOpenFiles": [
-    "Places/Drylands.md",
-    "Pasted image 20211006122622.png",
-    "Pasted image 20211006120724.png",
-    "Characters/Reletionships/Untitled.md",
-    "Characters/Monsters/Specific/Infestators/Corrupted pack leader.md",
-    "Characters/Monsters/Specific/Infestators/Hive.md",
-    "Characters/Monsters/Monsters.md",
-    "Characters/Monsters/General/Infestators.md",
+    "Characters/Monsters/Specific/Infestators/Walker.md",
+    "Characters/Monsters/Specific/Infestators/Loner.md",
     "Characters/Monsters/Specific/Infestators/Protector.md",
-    "Characters/Monsters/Specific/Infestators/Loner.md"
+    "Characters/Monsters/Specific/Infestators/Spider.md",
+    "Characters/Monsters/Specific/Infestators/Hive.md",
+    "Characters/Monsters/Specific/Infestators/Infected citizen.md",
+    "Characters/Monsters/Specific/Infestators/Corrupted wolf.md",
+    "Characters/Monsters/Specific/Infestators/Corrupted pack leader.md",
+    "Equipment/Weapons/General/Flamethrower.md",
+    "Equipment/Weapons/General/Lazer.md"
   ]
 }

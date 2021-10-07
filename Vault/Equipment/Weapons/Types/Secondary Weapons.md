@@ -4,4 +4,4 @@ Use penalty type - [[Recharge Cooldown]]
 
 ## List of all secondary weapons
 
-### [[Flamethrowers]]
+### [[Flamethrower]]

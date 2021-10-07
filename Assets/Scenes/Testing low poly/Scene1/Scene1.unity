@@ -8751,7 +8751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 246890837553114138, guid: 3dc286c46d54c1e4d9edce30f6af456c, type: 3}
       propertyPath: inAimMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc286c46d54c1e4d9edce30f6af456c, type: 3}

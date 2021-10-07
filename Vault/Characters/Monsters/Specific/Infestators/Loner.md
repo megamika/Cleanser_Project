@@ -10,3 +10,7 @@ Shadow - an ability that allows him to blend in with the forest and dissapear co
 
 ## References
 ![[Pasted image 20211006122120.png]]
+
+## Concept
+
+![[Pasted image 20211006144558.png]]

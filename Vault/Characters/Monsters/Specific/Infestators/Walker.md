@@ -8,3 +8,7 @@ Slash - uses it's hands to slash.
 ## References
 
 ![[Pasted image 20211006120037.png]]
+
+## Concept
+
+![[Pasted image 20211006144713.png]]

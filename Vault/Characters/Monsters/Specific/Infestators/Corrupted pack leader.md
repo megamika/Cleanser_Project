@@ -10,3 +10,7 @@ Call - When in danger will prompt all of the [[Corrupted wolf]]s in his pack to 
 
 ## References
 ![[Pasted image 20211006123040.png]]
+
+## Concept
+
+![[Pasted image 20211006144540.png]]

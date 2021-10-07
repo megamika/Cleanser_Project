@@ -7,3 +7,7 @@ idk yet.
 ## References
 
 ![[Pasted image 20211006123913.png]]
+
+## Concept
+
+![[Pasted image 20211006144631.png]]

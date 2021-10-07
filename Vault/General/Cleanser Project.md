@@ -1,1 +1,1 @@
-[[Cleanser Project]] is a game where you play as a [[Cleaner]] and your mission is to destroy the [[Infestators]] that has plagued the [[Drylands]]. Use your [[Primary Weapons]] such as a [[Flamethrowers]] and a [[Flamesticks]].
+[[Cleanser Project]] is a game where you play as a [[Cleaner]] and your mission is to destroy the [[Infestators]] that has plagued the [[Drylands]]. Use your [[Primary Weapons]] such as a [[Flamethrower]] and a [[Sword]].

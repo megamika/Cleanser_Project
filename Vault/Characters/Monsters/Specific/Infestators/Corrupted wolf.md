@@ -7,3 +7,7 @@ Lounge and bite - A long range run and then a jump. It is vulnerable if the atta
 ## References
 
 ![[Pasted image 20211006120724.png]]
+
+## Concept
+
+![[Pasted image 20211006144514.png]]

@@ -1,3 +1,3 @@
-[[Flamethrowers]]
+[[Flamethrower]]
 
 #weapons 

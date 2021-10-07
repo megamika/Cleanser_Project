@@ -4,4 +4,4 @@ Use penalty type - [[Cooldown]]
 
 ## List of all primary weapons
 
-### [[Flamesticks]]
+### [[Sword]]
